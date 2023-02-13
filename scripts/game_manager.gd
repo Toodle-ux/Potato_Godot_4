@@ -9,6 +9,8 @@ var money = 0
 var potatoes_1 = 0
 var seeds_1 = 15
 
+signal update_status
+
 # two status of one turn
 enum status {
 	harvest,
@@ -45,7 +47,7 @@ func _consume_action_points(number):
 func _change_status():
 	if action_points < 1:
 		current_status = status.harvest
-		#farm_map._harvest()
+		emit_signal("update_status")
 
 func _update_turn():
 	if action_points < 1:
@@ -70,3 +72,4 @@ func _on_button_next_turn_pressed():
 	turn += 1
 	current_status = status.growing
 	_update_ui()
+

@@ -6,9 +6,13 @@ var min_y
 var max_x
 var max_y
 
+var tile_size = 48
+var tile_array = []
+
 # calculate the size of the tilemap at the start of the game
 func _ready():
 	_calculate_bounds()
+	GameManager.connect("update_status", _handle_cells)
 	#print(min_x, max_x, min_y, max_y)
 
 
@@ -73,8 +77,9 @@ func _harvest(click_cell_position):
 #				set_cell(0, Vector2(x, y), 0, Vector2i(54,5))
 
 # loop over all tiles and turn buds into potatoes
-func _mature():
-	pass
+func _mature(cell):
+	set_cell(0, cell, 0, Vector2i(54,5))
+	print("mature")
 
 	#_calculate_bounds()
 	
@@ -100,13 +105,24 @@ func _calculate_bounds():
 	max_y = 0
 	
 	for pos in used_cells:
-		if pos.x < min_x:
-			min_x = int(pos.x)
-		elif pos.x > max_x:
-			max_x = int(pos.x)
-		if pos.y < min_y:
-			min_y = int(pos.y)
-		elif pos.y > max_y:
-			max_y = int(pos.y)
-	
+		tile_array.append(pos)
+
+#		if pos.x < min_x:
+#			min_x = int(pos.x)
+#		elif pos.x > max_x:
+#			max_x = int(pos.x)
+#		if pos.y < min_y:
+#			min_y = int(pos.y)
+#		elif pos.y > max_y:
+#			max_y = int(pos.y)
+	print(tile_array)	
 	#print(min_x, max_x)
+
+func _handle_cells():
+	print("handle cells")
+	print(tile_array)
+	for cell in tile_array:
+		print(cell)
+		var data :TileData = get_cell_tile_data(0,cell)
+		if data and data.get_custom_data("Planted") == true:
+			_mature(cell)
