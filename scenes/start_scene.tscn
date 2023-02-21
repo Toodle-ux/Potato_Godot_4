@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://d4l8x3sqh4imx"]
+
+[ext_resource type="Script" path="res://scenes/start_scene.gd" id="1_0xjgb"]
+[ext_resource type="Texture2D" uid="uid://bi8cm5ys8n4du" path="res://assets/images/front_page.png" id="1_p6uyy"]
+
+[node name="start_scene" type="Node2D"]
+script = ExtResource("1_0xjgb")
+
+[node name="FrontPage" type="Sprite2D" parent="."]
+position = Vector2(960, 540)
+texture = ExtResource("1_p6uyy")
+
+[node name="start_button" type="Button" parent="."]
+offset_left = 951.0
+offset_top = 691.0
+offset_right = 1044.0
+offset_bottom = 722.0
+text = "New Game"
+
+[connection signal="pressed" from="start_button" to="." method="_on_start_button_pressed"]

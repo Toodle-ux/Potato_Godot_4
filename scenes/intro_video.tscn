@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://tj8fj5f3qo55"]
+
+[ext_resource type="VideoStream" path="res://assets/videos/intro_video.ogv" id="1_000f5"]
+[ext_resource type="Script" path="res://scenes/intro_video.gd" id="2_1ou86"]
+
+[node name="intro_video" type="VideoStreamPlayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 1920.0
+offset_bottom = 1088.0
+grow_horizontal = 2
+grow_vertical = 2
+stream = ExtResource("1_000f5")
+autoplay = true
+script = ExtResource("2_1ou86")
+
+[connection signal="finished" from="." to="." method="_on_finished"]
