@@ -1,3 +1,6 @@
-[gd_scene format=3 uid="uid://ba37lkx6cgjqy"]
+[gd_scene load_steps=2 format=3 uid="uid://ba37lkx6cgjqy"]
+
+[ext_resource type="Script" path="res://scenes/dialogue.gd" id="1_0q6pl"]
 
 [node name="dialogue" type="Node2D"]
+script = ExtResource("1_0q6pl")

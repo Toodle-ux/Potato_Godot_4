@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cqeuxri226hhn"
-path="res://.godot/imported/farm_manager_test.jpg-a09f081855f29b0d77f37827281b333b.ctex"
+uid="uid://c3c477wfgvmxw"
+path="res://.godot/imported/potato_test.png-9716daebe89f126c389dee9546d8fd0a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/images/portraits/farm_manager_test.jpg"
-dest_files=["res://.godot/imported/farm_manager_test.jpg-a09f081855f29b0d77f37827281b333b.ctex"]
+source_file="res://assets/images/portraits/potato_test.png"
+dest_files=["res://.godot/imported/potato_test.png-9716daebe89f126c389dee9546d8fd0a.ctex"]
 
 [params]
 
