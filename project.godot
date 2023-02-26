@@ -368,7 +368,7 @@ editor/current_resources={
 "Character Editor": "res://stories/characters/char_potato.dch",
 "Timeline Editor": "res://stories/timelines/0.dtl"
 }
-editor/last_resources=["res://stories/characters/test.dch", "res://stories/characters/char_potato.dch", "res://stories/characters/char_farm_manager.dch"]
+editor/last_resources=["res://stories/timelines/0.dtl", "res://stories/characters/char_farm_manager.dch", "res://stories/characters/test.dch", "res://stories/characters/char_potato.dch"]
 editor/current_timeline_path="res://stories/timelines/0.dtl"
 animations/join_default_length=0.5
 animations/leave_default_length=0.5
@@ -387,6 +387,9 @@ text/autocontinue_delay=1.0
 variables={}
 editor/visual_timeline_editor_sidebar=162.0
 editor/last/resources=["res://timelines/Chapter1.dtl", "res://characters/Emilio.dch", "res://characters/kvagram.dch", "res://characters/Dex.dch", "res://stories/characters/test.dch", "res://stories/characters/char_potato.dch", "res://stories/characters/char_farm_manager.dch", "res://stories/timelines/0.dtl", "res://stories/timelines/timeline.dtl"]
+editor/timeline_editor_mode=0
+editor/default_dialog_scene="res://scenes/main.tscn"
+editor/test_dialog_scene="res://scenes/main.tscn"
 
 [display]
 
