@@ -30,8 +30,10 @@ func _execute() -> void:
 
 
 func _on_DialogicTextInput_input_confirmed(input:String) -> void:
-	assert (Dialogic.has_subsystem('VAR'), \
-			'The TextInput event needs the variable subsystem to be present.')
+	if !Dialogic.has_subsystem('VAR'):
+		printerr('[Dialogic] The TextInput event needs the variable subsystem to be present.')
+		finish()
+		return
 	dialogic.VAR.set_variable(variable, input)
 	dialogic.TextInput.hide_text_input()
 	dialogic.current_state = Dialogic.states.IDLE
@@ -43,7 +45,7 @@ func _on_DialogicTextInput_input_confirmed(input:String) -> void:
 ################################################################################
 
 func _init() -> void:
-	event_name = "text Input"
+	event_name = "Text Input"
 	set_default_color('Color1')
 	event_category = Category.Godot
 	event_sorting_index = 6

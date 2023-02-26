@@ -1,6 +1,56 @@
-[gd_scene load_steps=2 format=3 uid="uid://ba37lkx6cgjqy"]
+[gd_scene load_steps=7 format=3 uid="uid://ba37lkx6cgjqy"]
 
-[ext_resource type="Script" path="res://scenes/dialogue.gd" id="1_0q6pl"]
+[ext_resource type="Script" path="res://scenes/dialogue_box.gd" id="2_3e1nw"]
+[ext_resource type="Texture2D" uid="uid://dqtjbt22ac5tx" path="res://assets/images/ui/img_test_dialogue_box.png" id="2_gixg4"]
+[ext_resource type="Theme" uid="uid://rycxdtopb5m8" path="res://assets/themes/title.tres" id="3_47qey"]
+[ext_resource type="Theme" uid="uid://deam141n84ptq" path="res://assets/themes/normal.tres" id="4_0bw2n"]
+[ext_resource type="Texture2D" uid="uid://c3c477wfgvmxw" path="res://assets/images/portraits/potato_test.png" id="5_6bfv7"]
 
-[node name="dialogue" type="Node2D"]
-script = ExtResource("1_0q6pl")
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_hrs2p"]
+
+[node name="dialogue" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="dialogue_box" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 384.0
+offset_top = 784.0
+offset_right = 1631.0
+offset_bottom = 1078.0
+pivot_offset = Vector2(624, 294)
+texture = ExtResource("2_gixg4")
+script = ExtResource("2_3e1nw")
+dialogPath = "res://stories/timelines/0.json"
+
+[node name="name" type="RichTextLabel" parent="dialogue_box"]
+layout_mode = 0
+offset_left = 8.0
+offset_right = 456.0
+offset_bottom = 48.0
+theme = ExtResource("3_47qey")
+bbcode_enabled = true
+text = "Name"
+
+[node name="text" type="RichTextLabel" parent="dialogue_box"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 56.0
+offset_right = 1152.0
+offset_bottom = 232.0
+theme = ExtResource("4_0bw2n")
+bbcode_enabled = true
+text = "Just a test blahblahblahblahblahballhblbhjasldjljsdflajlsdfja;ljd
+la;sdjf;lkajsdf;ljasdl;fjkasl;dkfjlasdkjfl;sdafasdf"
+
+[node name="indicator" type="Polygon2D" parent="dialogue_box"]
+position = Vector2(1160, 232)
+color = Color(0.054902, 0.054902, 0.054902, 1)
+texture = SubResource("PlaceholderTexture2D_hrs2p")
+polygon = PackedVector2Array(-8, 0, 16, 32, 32, 0)
+
+[node name="portrait" type="Sprite2D" parent="dialogue_box"]
+position = Vector2(-120, 136)
+texture = ExtResource("5_6bfv7")
+
+[node name="Timer" type="Timer" parent="dialogue_box"]

@@ -32,6 +32,7 @@ func _register() -> void:
 		get_theme_icon("PlayScene", "EditorIcons"),
 		self)
 	play_timeline_button.pressed.connect(play_timeline)
+	play_timeline_button.tooltip_text = "Play the current timeline (CTRL+F5)"
 	# switch editor mode button
 	editor_mode_toggle_button = editors_manager.add_custom_button(
 		"Text editor",
@@ -75,6 +76,12 @@ func _save_resource() -> void:
 		1:
 			$TextEditor.save_timeline()
 
+
+func _input(event: InputEvent) -> void:
+	
+	if event is InputEventKey and event.keycode == KEY_F5 and event.pressed:
+		if Input.is_key_pressed(KEY_CTRL):
+			play_timeline()
 
 
 ## Method to play the current timeline. Connected to the button in the sidebar.
@@ -124,12 +131,16 @@ func new_timeline(path:String) -> void:
 	_save_resource()
 	var new_timeline := DialogicTimeline.new()
 	new_timeline.resource_path = path
-	_open_resource(new_timeline)
+	new_timeline.set_meta('timeline_not_saved', true)
+	var err := ResourceSaver.save(new_timeline)
+	editors_manager.resource_helper.rebuild_timeline_directory()
+	editors_manager.edit_resource(new_timeline)
 
 
 func _ready():
 	$NoTimelineScreen.add_theme_stylebox_override("panel", get_theme_stylebox("Background", "EditorStyles"))
-
+	get_parent().set_tab_title(get_index(), 'Timeline')
+	get_parent().set_tab_icon(get_index(), get_theme_icon("TripleBar", "EditorIcons"))
 
 func _on_create_timeline_button_pressed():
 	editors_manager.show_add_resource_dialog(
@@ -138,3 +149,14 @@ func _on_create_timeline_button_pressed():
 			'Create new timeline',
 			'timeline',
 			)
+
+
+func _clear():
+	current_resource = null
+	current_resource_state = ResourceStates.Saved
+	match current_editor_mode:
+		0:
+			$VisualEditor.clear_timeline_nodes()
+		1:
+			$TextEditor.clear_timeline()
+	$NoTimelineScreen.show()

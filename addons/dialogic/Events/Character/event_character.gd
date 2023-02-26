@@ -75,6 +75,7 @@ func _execute() -> void:
 			if character:
 				if !dialogic.Portraits.is_character_joined(character):
 					var n = dialogic.Portraits.add_portrait(character, portrait, position, mirrored, z_index, extra_data)
+					
 					if n:
 						if animation_name.is_empty():
 							animation_name = DialogicUtil.get_project_setting('dialogic/animations/join_default', 
@@ -89,10 +90,10 @@ func _execute() -> void:
 								await anim.finished
 								dialogic.current_state = Dialogic.states.IDLE
 				else:
-					dialogic.Portraits.change_portrait(character, portrait)
+					dialogic.Portraits.change_portrait(character, portrait, false)
 					if animation_name.is_empty():
 						animation_length = DialogicUtil.get_project_setting('dialogic/animations/join_default_length', 0.5)
-					dialogic.Portraits.move_portrait(character, position, z_index, false, animation_length)
+					dialogic.Portraits.move_portrait(character, position, animation_length)
 		ActionTypes.Leave:
 			if _character_from_directory == '--All--':
 				if animation_name.is_empty():
@@ -132,16 +133,18 @@ func _execute() -> void:
 							dialogic.current_state = Dialogic.states.ANIMATING
 							await anim.finished
 							dialogic.current_state = Dialogic.states.IDLE
-					
 					else:
 						dialogic.Portraits.remove_portrait(character)
-
+			
 		ActionTypes.Update:
 			if character:
 				if dialogic.Portraits.is_character_joined(character):
-					dialogic.Portraits.change_portrait(character, portrait, mirrored, z_index, _update_zindex, extra_data)
+					dialogic.Portraits.change_portrait(character, portrait, false)
+					dialogic.Portraits.change_portrait_mirror(character, mirrored)
+					if _update_zindex:
+						dialogic.Portraits.change_portrait_z_index(character, z_index)
 					if position != 0:
-						dialogic.Portraits.move_portrait(character, position, z_index, _update_zindex, position_move_time)
+						dialogic.Portraits.move_portrait(character, position, position_move_time)
 					
 					if animation_name:
 						var anim = dialogic.Portraits.animate_portrait(character, animation_name, animation_length, animation_repeats)
@@ -182,10 +185,10 @@ func to_text() -> String:
 		ActionTypes.Leave: result_string += "Leave "
 		ActionTypes.Update: result_string += "Update "
 	
-	print('to_string')
+#	print('to_string')
 	
-	print('character ', character)
-	print('characterfrom ', _character_from_directory)
+#	print('character ', character)
+#	print('characterfrom ', _character_from_directory)
 	
 	if character or _character_from_directory == '--All--':
 		if action_type == ActionTypes.Leave and _character_from_directory == '--All--':
@@ -202,7 +205,7 @@ func to_text() -> String:
 			if !portrait.is_empty() and action_type != ActionTypes.Leave:
 				result_string+= " ("+portrait+")"
 	
-	if position and action_type != ActionTypes.Leave:
+	if action_type != ActionTypes.Leave:
 		result_string += " "+str(position)
 	if animation_name != "" or z_index != 0 or mirrored != false or position_move_time != 0.0 or extra_data != "":
 		result_string += " ["
@@ -313,7 +316,7 @@ func from_text(string:String) -> void:
 		
 		#repeat is supported on Update, the other two should not be checking this
 			if action_type == ActionTypes.Update:
-				animation_repeats = shortcode_params.get('repeat', 1).to_int()
+				animation_repeats = int(shortcode_params.get('repeat', 1))
 				position_move_time = shortcode_params.get('move_time', 0.0)
 		#move time is only supported on Update, but it isnt part of the animations so its separate
 		if action_type == ActionTypes.Update:
@@ -368,7 +371,7 @@ func build_event_editor() -> void:
 			{'empty_text' 		: 'Default', 
 			'suggestions_func' 	: get_portrait_suggestions, 
 			'icon' 				: load("res://addons/dialogic/Editor/Images/Resources/portrait.svg")}, 
-			'character != null and !has_no_portraits() and action_type != %s' %ActionTypes.Leave)
+			'should_show_portrait_selector()')
 	add_header_edit('position', ValueType.Integer, ' at position', '', {}, 
 			'character != null and !has_no_portraits() and action_type != %s' %ActionTypes.Leave)
 	
@@ -385,16 +388,19 @@ func build_event_editor() -> void:
 			'should_show_animation_options() and !animation_name.is_empty()')
 	add_body_edit('animation_repeats', ValueType.Integer, 'Repeat:', '', {},
 			'should_show_animation_options() and !animation_name.is_empty() and action_type == %s)' %ActionTypes.Update)
-	add_body_edit('z_index', ValueType.Integer, 'portrait z-index:', "",{},
+	add_body_edit('z_index', ValueType.Integer, 'Z-index:', "",{},
 			'action_type != %s' %ActionTypes.Leave)
-	add_body_edit('mirrored', ValueType.Bool, 'mirrored:', "",{},
+	add_body_edit('mirrored', ValueType.Bool, 'Mirrored:', "",{},
 			'action_type != %s' %ActionTypes.Leave)
-	add_body_edit('position_move_time', ValueType.Float, 'Transiton time to change position:', '', {}, 
+	add_body_edit('position_move_time', ValueType.Float, 'Movement duration:', '', {}, 
 			'action_type == %s' %ActionTypes.Update)
 
 
 func should_show_animation_options() -> bool:
 	return (character != null and !character.portraits.is_empty()) or _character_from_directory == '--All--' 
+
+func should_show_portrait_selector() -> bool:
+	return character != null and len(character.portraits) > 1 and action_type != ActionTypes.Leave
 
 func has_no_portraits() -> bool:
 	return character and character.portraits.is_empty()

@@ -21,6 +21,8 @@ var current_resource_state: ResourceStates:
 			resource_unsaved.emit()
 
 var editors_manager: Control
+# text displayed on the current resource label on non-resource editors
+var alternative_text: String = ""
 
 ## Overwrite. Register to the editor manager in here.
 func _register() -> void:
@@ -44,4 +46,10 @@ func _open(extra_info:Variant = null) -> void:
 
 ## Overwrite. Called when another editor is opened. (hide() doesn't have to be called)
 func _close():
+	pass
+
+
+## Overwrite. Called to clear all current state and resource from the editor.
+## Although rarely used, sometimes you just want NO timeline to be open.
+func _clear():
 	pass

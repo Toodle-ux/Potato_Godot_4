@@ -10,19 +10,26 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="ui_status" type="Label" parent="VBoxContainer"]
+layout_mode = 2
 
 [node name="ui_turn" type="Label" parent="VBoxContainer"]
+layout_mode = 2
 
 [node name="ui_action_points" type="Label" parent="VBoxContainer"]
+layout_mode = 2
 
 [node name="ui_potatoes_1" type="Label" parent="VBoxContainer"]
+layout_mode = 2
 
 [node name="ui_seeds_1" type="Label" parent="VBoxContainer"]
+layout_mode = 2
 
 [node name="ui_money" type="Label" parent="VBoxContainer"]
+layout_mode = 2
 
 [node name="button_next_turn" type="Button" parent="VBoxContainer"]
 visible = false
+layout_mode = 2
 text = "Next Turn"
 
 [connection signal="pressed" from="VBoxContainer/button_next_turn" to="." method="_on_button_next_turn_pressed"]

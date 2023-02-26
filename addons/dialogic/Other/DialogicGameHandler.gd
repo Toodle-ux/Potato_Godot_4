@@ -4,7 +4,6 @@ enum states {IDLE, SHOWING_TEXT, ANIMATING, AWAITING_CHOICE, WAITING}
 
 var current_timeline: Variant = null
 var current_timeline_events: Array = []
-var timeline_jump_stack: Array = []
 var character_directory: Dictionary = {}
 var timeline_directory: Dictionary = {}
 var _event_script_cache: Array[DialogicEvent] = []
@@ -67,22 +66,21 @@ func start_timeline(timeline_resource:Variant, label_or_idx:Variant = "") -> voi
 		else: 
 			timeline_resource = load(find_timeline(timeline_resource))
 		if timeline_resource == null:
-			assert(false, "There was an error loading this timeline. Check the filename, and the timeline for errors")
-	
+			printerr("[Dialogic] There was an error loading this timeline. Check the filename, and the timeline for errors")
+			return
 	timeline_resource = process_timeline(timeline_resource)
-		
+	
 	current_timeline = timeline_resource
-	current_timeline_events = current_timeline.get_events()
+	current_timeline_events = current_timeline.events
 	current_event_idx = -1
 	
 	if typeof(label_or_idx) == TYPE_STRING:
 		if label_or_idx:
-			jump_to_label(label_or_idx)
+			if has_subsystem('Jump'):
+				self.Jump.jump_to_label(label_or_idx)
 	elif typeof(label_or_idx) == TYPE_INT:
 		if label_or_idx >-1:
 			current_event_idx = label_or_idx -1
-	
-
 	
 	emit_signal('timeline_started')
 	handle_next_event()
@@ -95,7 +93,8 @@ func preload_timeline(timeline_resource:Variant) -> Variant:
 	if typeof(timeline_resource) == TYPE_STRING:
 		timeline_resource = load(timeline_resource)
 		if timeline_resource == null:
-			assert(false, "There was an error loading this timeline. Check the filename, and the timeline for errors")
+			printerr("[Dialogic] There was an error preloading this timeline. Check the filename, and the timeline for errors")
+			return false
 		else:
 			timeline_resource = process_timeline(timeline_resource)
 			return timeline_resource
@@ -121,9 +120,9 @@ func handle_event(event_index:int) -> void:
 		await dialogic_resumed
 	
 	if event_index >= len(current_timeline_events):
-		if timeline_jump_stack.size() > 0:
-			pop_from_jump_stack()
-			event_index = current_event_idx+1
+		if has_subsystem('Jump') and !self.Jump.is_jump_stack_empty():
+			self.Jump.resume_from_latst_jump()
+			return
 		else:
 			end_timeline()
 			return
@@ -148,33 +147,6 @@ func handle_event(event_index:int) -> void:
 	emit_signal('event_handled', current_timeline_events[event_index])
 
 
-func jump_to_label(label:String) -> void:
-	if label.is_empty():
-		current_event_idx = 0
-		return
-	var idx: int = -1
-	while true:
-		idx += 1
-		var event: Variant = current_timeline.get_event(idx)
-		if not event:
-			idx = current_event_idx
-			break
-		if event is DialogicLabelEvent and event.name == label:
-			break
-	current_event_idx = idx
-
-func push_to_jump_stack() -> void:
-	var current_point:Dictionary = {}
-	current_point['timeline'] = current_timeline 
-	current_point['index'] = current_event_idx
-	timeline_jump_stack.push_front(current_point)
-
-func pop_from_jump_stack() -> void:
-	var stack_point:Dictionary = timeline_jump_stack.pop_front()
-	current_timeline = stack_point['timeline']
-	current_timeline_events = current_timeline.get_events()
-	current_event_idx = stack_point['index']
-	
 
 func clear() -> bool:
 	for subsystem in get_children():
@@ -407,7 +379,7 @@ func rebuild_timeline_directory() -> void:
 	
 	# Now the three arrays are prepped, begin the depth search
 	var clean_search_path:bool = false
-	var depth = 1
+	var depth := 1
 	
 
 	while !clean_search_path:
@@ -441,16 +413,17 @@ func find_timeline(path: String) -> String:
 		for i in timeline_directory.keys():
 			if timeline_directory[i].contains(path):
 				return timeline_directory[i]
-				
+	
 	return ""
 
 
 func process_timeline(timeline: DialogicTimeline) -> DialogicTimeline:
 	if timeline != null:
 		if timeline.events_processed:
+			for event in timeline.events:
+				event.event_node_ready = true
 			return timeline
 		else:
-			#print(str(Time.get_ticks_msec()) + ": Starting process unloaded timeline")	
 			var end_event := DialogicEndBranchEvent.new()
 			
 			var prev_indent := ""
@@ -543,12 +516,14 @@ func process_timeline(timeline: DialogicTimeline) -> DialogicTimeline:
 ################################################################################
 func start(timeline, single_instance = true):
 	var dialog_scene_path: String = DialogicUtil.get_project_setting(
-		'dialogic/editor/default_dialog_scene', "res://addons/dialogic/Example Assets/example-scenes/DialogicDefaultScene.tscn")
+		'dialogic/layout_scene', DialogicUtil.get_default_layout())
 	if single_instance:
 		if get_tree().get_nodes_in_group('dialogic_main_node').is_empty():
 			var scene = load(dialog_scene_path).instantiate()
+			DialogicUtil.apply_scene_export_overrides(scene, ProjectSettings.get_setting('dialogic/layout/export_overrides', {}))
 			get_parent().call_deferred("add_child", scene)
 	Dialogic.start_timeline(timeline)
+
 
 func is_running() -> bool:
 	if get_tree().get_nodes_in_group('dialogic_main_node').is_empty():
