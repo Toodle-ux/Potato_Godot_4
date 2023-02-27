@@ -1,5 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://dpqw0p6fddcnj"]
+[gd_scene load_steps=8 format=3 uid="uid://dpqw0p6fddcnj"]
 
+[ext_resource type="Texture2D" uid="uid://dee05c05iv133" path="res://assets/images/tilemaps/background.png" id="1_dw6wy"]
 [ext_resource type="Texture2D" uid="uid://bbqqgwkln40r3" path="res://assets/atlas_48x.png" id="1_p6aan"]
 [ext_resource type="Script" path="res://scripts/farm_map.gd" id="2_0s2co"]
 
@@ -3353,6 +3354,10 @@ texture_region_size = Vector2i(96, 16)
 sources/2 = SubResource("TileSetAtlasSource_41ffa")
 
 [node name="main" type="Node2D"]
+
+[node name="background" type="Sprite2D" parent="."]
+texture = ExtResource("1_dw6wy")
+centered = false
 
 [node name="farm_map" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_x4xdn")
