@@ -28,13 +28,8 @@ editor/current_resources={
 "Character Editor": "res://stories/characters/char_potato.dch",
 "Timeline Editor": "res://stories/timelines/test.dtl"
 }
-<<<<<<< HEAD
 editor/last_resources=["res://stories/characters/test.dch", "res://stories/characters/char_potato.dch", "res://stories/characters/char_farm_manager.dch", "res://stories/timelines/0.dtl", "res://stories/timelines/test.dtl"]
 editor/current_timeline_path="res://stories/timelines/test.dtl"
-=======
-editor/last_resources=["res://stories/timelines/0.dtl", "res://stories/characters/char_farm_manager.dch", "res://stories/characters/test.dch", "res://stories/characters/char_potato.dch"]
-editor/current_timeline_path="res://stories/timelines/0.dtl"
->>>>>>> 109d56b9ddb6e2a452ffdd1ca6f8af4419e014c2
 animations/join_default_length=0.5
 animations/leave_default_length=0.5
 animations/leave_default_wait=true
@@ -51,19 +46,13 @@ text/skippable=true
 text/autocontinue_delay=1.0
 variables={}
 editor/visual_timeline_editor_sidebar=162.0
-<<<<<<< HEAD
 editor/last/resources=["res://stories/characters/test.dch", "res://stories/characters/char_potato.dch", "res://stories/characters/char_farm_manager.dch", "res://stories/timelines/0.dtl", "res://stories/timelines/test.dtl"]
+<<<<<<<HEADeditor/last_resources=["res://stories/characters/test.dch", "res://stories/characters/char_potato.dch", "res://stories/characters/char_farm_manager.dch", "res://stories/timelines/0.dtl", "res://stories/timelines/test.dtl"]
 
 [dialogue_editor]
 
 dialogues_selected_dialogue="ade89692-0b62-47dd-bacf-2b835ca69902"
 scenes_split_offset=433
-=======
-editor/last/resources=["res://timelines/Chapter1.dtl", "res://characters/Emilio.dch", "res://characters/kvagram.dch", "res://characters/Dex.dch", "res://stories/characters/test.dch", "res://stories/characters/char_potato.dch", "res://stories/characters/char_farm_manager.dch", "res://stories/timelines/0.dtl", "res://stories/timelines/timeline.dtl"]
-editor/timeline_editor_mode=0
-editor/default_dialog_scene="res://scenes/main.tscn"
-editor/test_dialog_scene="res://scenes/main.tscn"
->>>>>>> 109d56b9ddb6e2a452ffdd1ca6f8af4419e014c2
 
 [display]
 
