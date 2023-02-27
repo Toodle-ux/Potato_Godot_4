@@ -1,10 +1,12 @@
-[gd_scene load_steps=7 format=3 uid="uid://ba37lkx6cgjqy"]
+[gd_scene load_steps=9 format=3 uid="uid://ba37lkx6cgjqy"]
 
 [ext_resource type="Script" path="res://scenes/dialogue_box.gd" id="2_3e1nw"]
 [ext_resource type="Texture2D" uid="uid://dqtjbt22ac5tx" path="res://assets/images/ui/img_test_dialogue_box.png" id="2_gixg4"]
 [ext_resource type="Theme" uid="uid://rycxdtopb5m8" path="res://assets/themes/title.tres" id="3_47qey"]
 [ext_resource type="Theme" uid="uid://deam141n84ptq" path="res://assets/themes/normal.tres" id="4_0bw2n"]
 [ext_resource type="Texture2D" uid="uid://c3c477wfgvmxw" path="res://assets/images/portraits/potato_test.png" id="5_6bfv7"]
+[ext_resource type="Texture2D" uid="uid://g81oqul7f7mo" path="res://assets/images/portraits/ManagerNeutral.png" id="6_gnwrn"]
+[ext_resource type="Texture2D" uid="uid://cywe04it02lnk" path="res://assets/images/portraits/PotatoNeutral.png" id="7_pn5ns"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_hrs2p"]
 
@@ -54,3 +56,11 @@ position = Vector2(-120, 136)
 texture = ExtResource("5_6bfv7")
 
 [node name="Timer" type="Timer" parent="dialogue_box"]
+
+[node name="TextureButton" type="TextureButton" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+disabled = true
+texture_normal = ExtResource("6_gnwrn")
+texture_hover = ExtResource("7_pn5ns")

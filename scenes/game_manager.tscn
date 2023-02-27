@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://c3harw8ptacqn"]
+[gd_scene load_steps=3 format=3 uid="uid://c3harw8ptacqn"]
 
 [ext_resource type="Script" path="res://scripts/game_manager.gd" id="1_5roft"]
+[ext_resource type="Theme" uid="uid://deam141n84ptq" path="res://assets/themes/normal.tres" id="2_vllq0"]
 
 [node name="game_manager" type="CanvasLayer"]
 script = ExtResource("1_5roft")
@@ -11,21 +12,27 @@ offset_bottom = 40.0
 
 [node name="ui_status" type="Label" parent="VBoxContainer"]
 layout_mode = 2
+theme = ExtResource("2_vllq0")
 
 [node name="ui_turn" type="Label" parent="VBoxContainer"]
 layout_mode = 2
+theme = ExtResource("2_vllq0")
 
 [node name="ui_action_points" type="Label" parent="VBoxContainer"]
 layout_mode = 2
+theme = ExtResource("2_vllq0")
 
 [node name="ui_potatoes_1" type="Label" parent="VBoxContainer"]
 layout_mode = 2
+theme = ExtResource("2_vllq0")
 
 [node name="ui_seeds_1" type="Label" parent="VBoxContainer"]
 layout_mode = 2
+theme = ExtResource("2_vllq0")
 
 [node name="ui_money" type="Label" parent="VBoxContainer"]
 layout_mode = 2
+theme = ExtResource("2_vllq0")
 
 [node name="button_next_turn" type="Button" parent="VBoxContainer"]
 visible = false
