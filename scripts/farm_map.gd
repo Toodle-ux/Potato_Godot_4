@@ -12,8 +12,8 @@ var tile_array = []
 # calculate the size of the tilemap at the start of the game
 func _ready():
 	#initiate dialogic
-	var opening_dialogue = Dialogic.start("0")
-	add_child(opening_dialogue)
+	#var opening_dialogue = Dialogic.start("0")
+	#add_child(opening_dialogue)
 	
 	_calculate_bounds()
 	GameManager.connect("update_status", _handle_cells)

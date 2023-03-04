@@ -23,9 +23,9 @@ Dialogic="*res://addons/dialogic/Other/DialogicGameHandler.gd"
 [dialogic]
 
 editor/character_preview_mode=1
-editor/current_editor=&"Timeline Editor"
+editor/current_editor=&"GlossaryEditor"
 editor/current_resources={
-"Character Editor": "res://stories/characters/char_potato.dch",
+"Character Editor": "res://stories/characters/char_farm_manager.dch",
 "Timeline Editor": "res://stories/timelines/0.dtl"
 }
 editor/last_resources=["res://stories/characters/test.dch", "res://stories/characters/char_potato.dch", "res://stories/characters/char_farm_manager.dch", "res://stories/timelines/0.dtl", "res://stories/timelines/test.dtl"]
