@@ -1,5 +1,9 @@
 extends TileMap
 
+@onready var tilemap_large_1 = $"../tilemap_large_1"
+@onready var tilemap_large_2 = $"../tilemap_large_2"
+@onready var tilemap_large_3 = $"../tilemap_large_3"
+@onready var tilemap_large_4 = $"../tilemap_large_4"
 
 var tile_size = 120
 var tile_array = []
@@ -112,4 +116,9 @@ func _combine_potatoes(cell):
 			for y in [0, 1]:
 				var current_cell = cell + Vector2i(x, y)
 				set_cell(0, current_cell, 0, Vector2i(11, 0))
-				
+		
+		_grow_big_potatoes(cell)
+	
+func _grow_big_potatoes(cell):
+	if (cell.x % 2 == 0) && (cell.y % 2 == 0):
+		tilemap_large_1.set_cell(0, Vector2i(cell.x / 2, cell.y / 2), 0, Vector2i(0, 0))
