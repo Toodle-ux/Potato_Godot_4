@@ -120,5 +120,13 @@ func _combine_potatoes(cell):
 		_grow_big_potatoes(cell)
 	
 func _grow_big_potatoes(cell):
-	if (cell.x % 2 == 0) && (cell.y % 2 == 0):
-		tilemap_large_1.set_cell(0, Vector2i(cell.x / 2, cell.y / 2), 0, Vector2i(0, 0))
+#	if (cell.x % 2 == 0) && (cell.y % 2 == 0):
+#		var x = cell.x / 2
+#		var y = cell.y / 2
+#		tilemap_large_2.set_cell(0, Vector2i(cell.x / 2, cell.y / 2), 0, Vector2i(0, 0))
+	
+	if (cell.x % 2 != 0) && (cell.y % 2 != 0):
+		print("big potato")
+		var x = (cell.x - 1) / 2
+		var y = (cell.y + 1) / 2
+		tilemap_large_3.set_cell(0, Vector2i(x, y), 0, Vector2i(0, 0))

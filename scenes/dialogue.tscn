@@ -1,7 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://ba37lkx6cgjqy"]
+[gd_scene load_steps=9 format=3 uid="uid://d1pk05f0m40q4"]
 
-[ext_resource type="Script" path="res://scenes/dialogue_box.gd" id="2_3e1nw"]
 [ext_resource type="Texture2D" uid="uid://dqtjbt22ac5tx" path="res://assets/images/ui/img_test_dialogue_box.png" id="2_gixg4"]
+[ext_resource type="Script" path="res://scripts/dialogue_box.gd" id="2_urura"]
 [ext_resource type="Theme" uid="uid://rycxdtopb5m8" path="res://assets/themes/title.tres" id="3_47qey"]
 [ext_resource type="Theme" uid="uid://deam141n84ptq" path="res://assets/themes/normal.tres" id="4_0bw2n"]
 [ext_resource type="Texture2D" uid="uid://c3c477wfgvmxw" path="res://assets/images/portraits/potato_test.png" id="5_6bfv7"]
@@ -22,7 +22,7 @@ offset_right = 1631.0
 offset_bottom = 1078.0
 pivot_offset = Vector2(624, 294)
 texture = ExtResource("2_gixg4")
-script = ExtResource("2_3e1nw")
+script = ExtResource("2_urura")
 dialogPath = "res://stories/timelines/0.json"
 
 [node name="name" type="RichTextLabel" parent="dialogue_box"]
