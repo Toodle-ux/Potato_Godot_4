@@ -37,6 +37,7 @@ func _ready():
 	ui_seeds_1.text = "Seeds: " + var_to_str(seeds_1)
 	
 
+# consume a certain action point and update
 func _consume_action_points(number):
 	action_points = action_points - number
 	print(turn)

@@ -8,10 +8,11 @@ extends TileMap
 var tile_size = 120
 var tile_array = []
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
+	# get all used cells
 	_calculate_bounds()
-	GameManager.connect("update_status", _handle_cells)
+	# listen to the signal from game manager. whenever receives the signal, loop over all cells
+	GameManager.connect("update_status", _loop_over_cells)
 
 
 # called when pressing a button
@@ -73,7 +74,7 @@ func _mature(cell):
 	print("mature")
 
 
-# calculate the bounds of the tilemap
+# add all used cells to an array
 func _calculate_bounds():
 	var used_cells = get_used_cells(0)
 	
@@ -82,20 +83,25 @@ func _calculate_bounds():
 
 	#print(tile_array)	
 
-func _handle_cells():
+# at the end of each turn, loop over all the cells
+func _loop_over_cells():
 	print("handle cells")
-	# print(tile_array)
+
 	for cell in tile_array:
-		# print(cell)
+		# combine four mature small potatoes into 1 large potato
 		_combine_potatoes(cell)
+		
+		# mature planted potatoes
 		var data :TileData = get_cell_tile_data(0,cell)
 		if data and data.get_custom_data("Planted") == true:
 			_mature(cell)
 
 func _combine_potatoes(cell):
+	# TODO: the type of the large potato should be depended on the arrangement of small potatoes
 	var potato_name = []
 	var turn_big = true
 	
+	# for the surrounding potatoes of a certain potato
 	for x in [0, 1]:
 		for y in [0, 1]:
 			var current_cell = cell + Vector2i(x, y)
@@ -110,7 +116,8 @@ func _combine_potatoes(cell):
 					turn_big = false
 			else: 
 				turn_big = false
-			
+	
+	# if all 4 surrounding potatoes are big potatoes, delete the four potatoes and add a big potato		
 	if turn_big:
 		for x in [0, 1]:
 			for y in [0, 1]:
