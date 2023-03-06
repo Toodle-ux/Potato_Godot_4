@@ -1,14 +1,14 @@
 [gd_scene load_steps=3 format=3 uid="uid://caep3ubxb5rc0"]
 
 [ext_resource type="Script" path="res://scripts/start_scene.gd" id="1_d8ovs"]
-[ext_resource type="Texture2D" uid="uid://bi8cm5ys8n4du" path="res://assets/images/tilemaps/front_page.png" id="1_p6uyy"]
+[ext_resource type="Texture2D" uid="uid://dkirkgah34x0w" path="res://assets/images/freedom_leads_potatoes.png" id="2_8bov4"]
 
 [node name="start_scene" type="Node2D"]
 script = ExtResource("1_d8ovs")
 
 [node name="FrontPage" type="Sprite2D" parent="."]
 position = Vector2(960, 540)
-texture = ExtResource("1_p6uyy")
+texture = ExtResource("2_8bov4")
 
 [node name="start_button" type="Button" parent="."]
 offset_left = 951.0
