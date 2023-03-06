@@ -1,13 +1,11 @@
 extends CanvasLayer
 
-var farm_map = load("res://scripts/farm_map.gd").new()
-
 var turn = 1
 var action_points = 3
 
 var money = 0
 var potatoes_1 = 0
-var seeds_1 = 15
+var seeds_1 = 10
 
 signal update_status
 
@@ -17,7 +15,7 @@ enum status {
 	growing
 }
 
-var current_status = status.growing
+var current_status = status.harvest
 
 @onready var ui_status = $VBoxContainer/ui_status
 @onready var ui_turn = $VBoxContainer/ui_turn

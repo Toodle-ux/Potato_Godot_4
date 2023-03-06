@@ -28,7 +28,7 @@ offset_right = -76.0
 offset_bottom = -1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/separation = 22
+theme_override_constants/separation = 45
 script = ExtResource("1_6g38w")
 
 [node name="Header" type="TextureRect" parent="."]
@@ -42,6 +42,7 @@ expand_mode = 1
 stretch_mode = 6
 
 [node name="Vignette" type="TextureRect" parent="Header"]
+modulate = Color(0, 0, 0, 1)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -84,8 +85,8 @@ offset_right = 77.0
 offset_bottom = -8.0
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_font_sizes/font_size = 15
-text = "2.0-Alpha-6 (for Godot 4 RC1)"
+theme_override_font_sizes/font_size = 30
+text = "2.0-Alpha-6 (for Godot 4.0 stable)"
 
 [node name="CenterContainer" type="HBoxContainer" parent="."]
 layout_mode = 2
@@ -97,7 +98,7 @@ custom_minimum_size = Vector2(75, 0)
 layout_mode = 2
 
 [node name="ScrollContainer" type="ScrollContainer" parent="CenterContainer"]
-custom_minimum_size = Vector2(500, 0)
+custom_minimum_size = Vector2(750, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 horizontal_scroll_mode = 0
@@ -118,7 +119,7 @@ theme_override_constants/v_separation = 20
 alignment = 1
 
 [node name="WelcomeBox" parent="CenterContainer/ScrollContainer/MarginContainer/BoxHolder" instance=ExtResource("4_hn0gf")]
-custom_minimum_size = Vector2(165, 0)
+custom_minimum_size = Vector2(330, 0)
 layout_mode = 2
 size_flags_vertical = 0
 title = "Welcome!"
@@ -126,7 +127,7 @@ content = "Welcome to dialogic! Easily create visual novels or dialogs for your 
 image = ExtResource("4_jm73p")
 
 [node name="WikiBox" parent="CenterContainer/ScrollContainer/MarginContainer/BoxHolder" instance=ExtResource("4_hn0gf")]
-custom_minimum_size = Vector2(165, 0)
+custom_minimum_size = Vector2(330, 0)
 layout_mode = 2
 size_flags_vertical = 0
 title = "How to start:"
@@ -135,7 +136,7 @@ image = ExtResource("6_p1dg6")
 button = "Beginners guide"
 
 [node name="RestartBox" parent="CenterContainer/ScrollContainer/MarginContainer/BoxHolder" instance=ExtResource("4_hn0gf")]
-custom_minimum_size = Vector2(165, 0)
+custom_minimum_size = Vector2(330, 0)
 layout_mode = 2
 size_flags_vertical = 0
 title = "Just installed?"
@@ -144,7 +145,7 @@ image = ExtResource("2_3lw3i")
 button = "Restart now"
 
 [node name="BugBox" parent="CenterContainer/ScrollContainer/MarginContainer/BoxHolder" instance=ExtResource("4_hn0gf")]
-custom_minimum_size = Vector2(165, 0)
+custom_minimum_size = Vector2(330, 0)
 layout_mode = 2
 size_flags_vertical = 0
 title = "Something broken!?"
@@ -153,7 +154,7 @@ image = ExtResource("2_3lw3i")
 button = "New issue"
 
 [node name="SharingBox" parent="CenterContainer/ScrollContainer/MarginContainer/BoxHolder" instance=ExtResource("4_hn0gf")]
-custom_minimum_size = Vector2(165, 0)
+custom_minimum_size = Vector2(330, 0)
 layout_mode = 2
 size_flags_vertical = 0
 title = "Making something?"

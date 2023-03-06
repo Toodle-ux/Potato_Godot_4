@@ -1,0 +1,18 @@
+[gd_scene load_steps=2 format=3 uid="uid://nbs6p21u82n4"]
+
+[ext_resource type="Texture2D" uid="uid://crpyavnvhx7h0" path="res://assets/images/ui/img_test_inventory_background.png" id="1_d1m0l"]
+
+[node name="inventory" type="Node2D"]
+
+[node name="inventory_panel" type="TextureRect" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_d1m0l")
+
+[node name="GridContainer" type="GridContainer" parent="inventory_panel"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="slot1" type="Panel" parent="inventory_panel/GridContainer"]
+layout_mode = 2

@@ -9,6 +9,9 @@ var tile_size = 120
 var tile_array = []
 
 func _ready():
+	
+	GameManager.visible = true
+	
 	# get all used cells
 	_calculate_bounds()
 	# listen to the signal from game manager. whenever receives the signal, loop over all cells
