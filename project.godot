@@ -29,7 +29,7 @@ editor/current_resources={
 "Character Editor": "res://stories/characters/char_potato.dch",
 "Timeline Editor": "res://stories/timelines/0.dtl"
 }
-editor/last_resources=["res://stories/characters/test.dch", "res://stories/characters/char_potato.dch", "res://stories/characters/char_farm_manager.dch", "res://stories/timelines/0.dtl", "res://stories/timelines/test.dtl"]
+editor/last_resources=["res://stories/characters/test.dch", "res://stories/characters/char_potato.dch", "res://stories/characters/char_farm_manager.dch", "res://stories/timelines/0.dtl", "res://stories/timelines/test.dtl", "res://Timeline/1.dtl"]
 editor/current_timeline_path="res://stories/timelines/0.dtl"
 animations/join_default_length=0.5
 animations/leave_default_length=0.5
@@ -47,7 +47,7 @@ text/skippable=true
 text/autocontinue_delay=1.0
 variables={}
 editor/visual_timeline_editor_sidebar=214.0
-editor/last/resources=["res://stories/characters/test.dch", "res://stories/characters/char_potato.dch", "res://stories/characters/char_farm_manager.dch", "res://stories/timelines/0.dtl", "res://stories/timelines/test.dtl"]
+editor/last/resources=["res://stories/characters/test.dch", "res://stories/characters/char_potato.dch", "res://stories/characters/char_farm_manager.dch", "res://stories/timelines/0.dtl", "res://stories/timelines/test.dtl", "res://Timeline/1.dtl"]
 <<<<<<<HEADeditor/last_resources=["res://stories/characters/test.dch", "res://stories/characters/char_potato.dch", "res://stories/characters/char_farm_manager.dch", "res://stories/timelines/0.dtl", "res://stories/timelines/test.dtl"]
 animations/join_default="res://addons/dialogic/Events/Character/DefaultAnimations/fade_in_up.gd"
 layout/mode=0
@@ -55,6 +55,7 @@ layout/export_overrides={
 "name_label_use_character_color": "false",
 "text_size": "25.0"
 }
+portrait_mode=1
 
 [dialogue_editor]
 

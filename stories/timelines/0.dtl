@@ -1,4 +1,4 @@
-char_farm_manager (default portrait): Potato 114514.
+char_farm_manager: Potato 114514.
 char_potato (Default Portrait): Y-Yes?
 char_farm_manager: I’m telling you about your offer to work on the potato farm.
 char_farm_manager: You should be proud of being made into french fries, but your size is too large for the machine.
@@ -6,4 +6,14 @@ char_farm_manager: So I’m offering you this opportunity to work for human bein
 char_farm_manager: You should be grateful.
 char_potato: Uh... thank you?
 char_farm_manager: Now, sign the contract and become a worker for me!
-[end_timeline]
+Leave char_farm_manager
+[wait time="2.0"]
+char_farm_manager: You're responsible for this potato farm.
+char_farm_manager: It's kind of a wasteland right now.
+char_farm_manager: You need to clean up everything here.
+char_farm_manager: First, you need to start with planting the seeds.
+char_farm_manager: You need to plant for the next month at the end of each month.
+char_farm_manager: You can plant the seeds in these empty fields.
+Click the field to plant a potato.
+char_farm_manager: I will give you 10 potato seeds for now.
+char_farm_manager: After planting, click "next month" to continue to the following month.
