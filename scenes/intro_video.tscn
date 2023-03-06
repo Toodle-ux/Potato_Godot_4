@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://g875bsfb4qfi"]
 
-[ext_resource type="VideoStream" path="res://assets/videos/intro_video.ogv" id="1_000f5"]
+[ext_resource type="VideoStream" path="res://assets/videos/intro_video_with_sound.ogv" id="1_lduc1"]
 [ext_resource type="Script" path="res://scripts/intro_video.gd" id="2_sn1r5"]
 
 [node name="intro_video" type="VideoStreamPlayer"]
@@ -11,7 +11,7 @@ offset_right = 1920.0
 offset_bottom = 1088.0
 grow_horizontal = 2
 grow_vertical = 2
-stream = ExtResource("1_000f5")
+stream = ExtResource("1_lduc1")
 autoplay = true
 script = ExtResource("2_sn1r5")
 
