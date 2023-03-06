@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 GameManager="*res://scenes/game_manager.tscn"
 Dialogic="*res://addons/dialogic/Other/DialogicGameHandler.gd"
+DialogicScene="*res://scenes/dialogic_scene.tscn"
 
 [dialogic]
 
@@ -26,10 +27,10 @@ editor/character_preview_mode=1
 editor/current_editor=&"Timeline Editor"
 editor/current_resources={
 "Character Editor": "res://stories/characters/char_potato.dch",
-"Timeline Editor": "res://stories/timelines/test.dtl"
+"Timeline Editor": "res://stories/timelines/0.dtl"
 }
 editor/last_resources=["res://stories/characters/test.dch", "res://stories/characters/char_potato.dch", "res://stories/characters/char_farm_manager.dch", "res://stories/timelines/0.dtl", "res://stories/timelines/test.dtl"]
-editor/current_timeline_path="res://stories/timelines/test.dtl"
+editor/current_timeline_path="res://stories/timelines/0.dtl"
 animations/join_default_length=0.5
 animations/leave_default_length=0.5
 animations/leave_default_wait=true

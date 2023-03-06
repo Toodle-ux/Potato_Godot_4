@@ -13,6 +13,7 @@ func _ready():
 	_calculate_bounds()
 	# listen to the signal from game manager. whenever receives the signal, loop over all cells
 	GameManager.connect("update_status", _loop_over_cells)
+	DialogicScene._play_dialogue()
 
 
 # called when pressing a button
