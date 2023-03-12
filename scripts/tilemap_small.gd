@@ -16,7 +16,7 @@ func _ready():
 	_calculate_bounds()
 	# listen to the signal from game manager. whenever receives the signal, loop over all cells
 	GameManager.connect("update_status", _loop_over_cells)
-	DialogicScene._play_dialogue()
+	# DialogicScene._play_dialogue()
 
 
 # called when pressing a button
@@ -25,7 +25,7 @@ func _unhandled_input(event):
 		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
 			var click_cell_position =  local_to_map(event.position)
 			_check_tile(click_cell_position)
-			print(click_cell_position)
+			print("small cell" + str(click_cell_position))
 
 func _check_tile(click_cell_position):
 	var data :TileData = get_cell_tile_data(0,click_cell_position)
@@ -112,6 +112,9 @@ func _combine_potatoes(cell):
 			
 			if tile_array.has(current_cell):
 				var data :TileData = get_cell_tile_data(0, current_cell)
+				print(current_cell)
+				print(data.get_custom_data("Harvestable"))
+				
 				if data and data.get_custom_data("Harvestable") == true:
 					var current_name = data.get_custom_data("Plant_Name")
 					potato_name.append(current_name)

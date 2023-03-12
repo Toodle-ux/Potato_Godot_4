@@ -5,7 +5,8 @@ var action_points = 3
 
 var money = 0
 var potatoes_1 = 0
-var seeds_1 = 10
+var seeds_1 = 50
+var big_potatoes = 0
 
 signal update_status
 

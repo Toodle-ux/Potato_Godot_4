@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://nbs6p21u82n4"]
+[gd_scene load_steps=3 format=3 uid="uid://nbs6p21u82n4"]
 
 [ext_resource type="Texture2D" uid="uid://crpyavnvhx7h0" path="res://assets/images/ui/img_test_inventory_background.png" id="1_d1m0l"]
+[ext_resource type="Theme" uid="uid://cxramq7j081mu" path="res://assets/themes/inventory.tres" id="2_oa2dq"]
 
 [node name="inventory" type="Node2D"]
 
@@ -16,3 +17,4 @@ offset_bottom = 40.0
 
 [node name="slot1" type="Panel" parent="inventory_panel/GridContainer"]
 layout_mode = 2
+theme = ExtResource("2_oa2dq")
