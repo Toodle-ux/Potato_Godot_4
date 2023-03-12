@@ -99,6 +99,7 @@ func _loop_over_cells():
 		var data :TileData = get_cell_tile_data(0,cell)
 		if data and data.get_custom_data("Planted") == true:
 			_mature(cell)
+			pass
 
 func _combine_potatoes(cell):
 	# TODO: the type of the large potato should be depended on the arrangement of small potatoes
@@ -109,28 +110,27 @@ func _combine_potatoes(cell):
 	for x in [0, 1]:
 		for y in [0, 1]:
 			var current_cell = cell + Vector2i(x, y)
-			
+			turn_big = turn_big and tile_array.has(current_cell)
 			if tile_array.has(current_cell):
 				var data :TileData = get_cell_tile_data(0, current_cell)
 				print(current_cell)
 				print(data.get_custom_data("Harvestable"))
-				
+				turn_big = turn_big and data.get_custom_data("Harvestable")
 				if data and data.get_custom_data("Harvestable") == true:
 					var current_name = data.get_custom_data("Plant_Name")
 					potato_name.append(current_name)
 					
-				else:
-					turn_big = false
-			else: 
-				turn_big = false
+				#else:
+					#turn_big = false
+			#else: 
+				#turn_big = false
 	
 	# if all 4 surrounding potatoes are big potatoes, delete the four potatoes and add a big potato		
-	if turn_big:
+	if turn_big == true:
 		for x in [0, 1]:
 			for y in [0, 1]:
 				var current_cell = cell + Vector2i(x, y)
 				set_cell(0, current_cell, 0, Vector2i(11, 0))
-		
 		_grow_big_potatoes(cell)
 
 # grow a big potato at the location of four small potatoes	
@@ -146,7 +146,7 @@ func _grow_big_potatoes(cell):
 		tilemap_large_2.set_cell(0, Vector2i(x, y), 0, Vector2i(0, 0))
 	
 	if (cell.x % 2 != 0) && (cell.y % 2 != 0):
-		print("big potato")
+		# print("big potato")
 		var x = (cell.x - 1) / 2
 		var y = (cell.y + 1) / 2
 		tilemap_large_3.set_cell(0, Vector2i(x, y), 0, Vector2i(0, 0))
