@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://c0t2xmcfxvvg7"]
+[gd_scene load_steps=16 format=3 uid="uid://c0t2xmcfxvvg7"]
 
 [ext_resource type="Texture2D" uid="uid://dee05c05iv133" path="res://assets/images/tilemaps/background.png" id="1_dw6wy"]
 [ext_resource type="Texture2D" uid="uid://bbqqgwkln40r3" path="res://assets/atlas_48x.png" id="1_p6aan"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" path="res://scripts/tilemap_large.gd" id="6_vscps"]
 [ext_resource type="Script" path="res://scripts/tilemap_large_3.gd" id="7_rcovf"]
 [ext_resource type="Script" path="res://scripts/tilemap_large_4.gd" id="8_opmnk"]
+[ext_resource type="Script" path="res://scenes/tutorial.gd" id="10_5s7sa"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_kyndq"]
 texture = ExtResource("1_p6aan")
@@ -1370,6 +1371,14 @@ custom_data_layer_4/name = "Farmland"
 custom_data_layer_4/type = 1
 sources/0 = SubResource("TileSetAtlasSource_lkprx")
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yfr1m"]
+draw_center = false
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.654902, 0.00392157, 0.870588, 1)
+
 [node name="main" type="Node2D"]
 
 [node name="background" type="Sprite2D" parent="."]
@@ -1415,3 +1424,36 @@ tile_set = SubResource("TileSet_l36hv")
 cell_quadrant_size = 96
 format = 2
 script = ExtResource("8_opmnk")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+visible = false
+script = ExtResource("10_5s7sa")
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 1, 1, 0)
+
+[node name="skip" type="Button" parent="CanvasLayer"]
+offset_right = 8.0
+offset_bottom = 8.0
+
+[node name="level1" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Button" type="Button" parent="CanvasLayer/level1"]
+offset_left = 264.0
+offset_top = 404.0
+offset_right = 347.0
+offset_bottom = 482.0
+theme_override_styles/normal = SubResource("StyleBoxFlat_yfr1m")
+
+[node name="Area2D" type="Area2D" parent="CanvasLayer/level1"]

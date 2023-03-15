@@ -1,0 +1,27 @@
+[gd_scene load_steps=3 format=3 uid="uid://dharkbp7fl8gq"]
+
+[ext_resource type="Texture2D" uid="uid://dlnkr3av40s8q" path="res://assets/images/ui/ui_test_break_normal.png" id="1_2i2kh"]
+[ext_resource type="Texture2D" uid="uid://b11wk5jige1oa" path="res://assets/images/ui/ui_test_break_pressed.png" id="2_7xuw5"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TextureButton2" type="TextureButton" parent="."]
+offset_right = 126.0
+offset_bottom = 126.0
+texture_normal = ExtResource("1_2i2kh")
+texture_pressed = ExtResource("2_7xuw5")
+texture_focused = ExtResource("2_7xuw5")
+
+[node name="TextureButton" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 249.0
+offset_top = 8.0
+offset_right = 375.0
+offset_bottom = 134.0
+texture_normal = ExtResource("1_2i2kh")
+texture_pressed = ExtResource("2_7xuw5")
+texture_focused = ExtResource("2_7xuw5")

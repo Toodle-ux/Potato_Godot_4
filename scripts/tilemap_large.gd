@@ -18,9 +18,19 @@ func _check_tile(cell):
 	
 	if GameManager.current_status == GameManager.status.harvest:
 		if data and data.get_custom_data("Playground") == true:
-			pass
+			if data.get_custom_data("Empty") == true:
+				_put_into_playground(cell)
+			else:
+				_harvest_organic_potatoes(cell)
+			
 		if data and data.get_custom_data("Farmland") and data.get_custom_data("Harvestable") == true:
 			_harvest_big_potatoes(cell)
+
+func _put_into_playground(cell):
+	set_cell(0, cell, 0, Vector2i(1, 0))
+
+func _harvest_organic_potatoes(cell):
+	set_cell(0, cell, 0, Vector2i(2, 0))
 
 func _harvest_big_potatoes(cell):
 	set_cell(0, cell, -1, Vector2i(3, 0))
