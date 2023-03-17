@@ -5,6 +5,10 @@ extends TileMap
 @onready var tilemap_large_3 = $"../tilemap_large_3"
 @onready var tilemap_large_4 = $"../tilemap_large_4"
 
+@onready var global_bgm = $"../Node2D/global_bgm"
+@onready var plant_potatoes = $"../Node2D/plant_potatoes"
+@onready var potatoes_pop = $"../Node2D/potatoes_pop"
+
 var tile_size = 120
 var tile_array = []
 
@@ -12,6 +16,8 @@ var playground_action_points = 2
 
 
 func _ready():
+	
+	global_bgm.play(0)
 	
 	GameManager.visible = true
 	
@@ -69,6 +75,7 @@ func _check_tile(click_cell_position):
 # change farmable cells to buds
 func _farm(click_cell_position):
 	if GameManager.seeds_1 > 0:
+		plant_potatoes.play()
 		set_cell(0, click_cell_position, 0, Vector2i(0, 0))
 		GameManager.seeds_1 -= 1
 		GameManager._update_ui()
@@ -98,6 +105,7 @@ func _harvest(click_cell_position):
 	set_cell(0, click_cell_position, 0, Vector2i(10, 0))
 	GameManager.potatoes_1 += 1
 	GameManager._update_ui()
+	potatoes_pop.play()
 
 # loop over all tiles and turn buds into potatoes
 func _mature(cell):
